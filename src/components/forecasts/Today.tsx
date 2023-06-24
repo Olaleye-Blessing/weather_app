@@ -1,6 +1,7 @@
-import { today as data } from "../../data/weather";
+import { FC } from "react";
 import { windDirection } from "../../utils/weather";
 import WeatherCondition from "./WeatherCondition";
+import { IToday } from "../../interfaces/weather";
 
 const dateOptions: Intl.DateTimeFormatOptions = {
   weekday: "long",
@@ -14,7 +15,7 @@ const timeOptions: Intl.DateTimeFormatOptions = {
   minute: "2-digit",
 };
 
-const Today = () => {
+const Today: FC<{ data: IToday }> = ({ data }) => {
   const date = new Date(data.dt * 1000);
 
   return (

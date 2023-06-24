@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { FC, useState } from "react";
+import { persistLocation } from "../utils/weather";
 
-const Search = () => {
+interface Props {
+  fetchForecasts: (query: string) => Promise<void>;
+}
+
+const Search: FC<Props> = ({ fetchForecasts }) => {
   const [query, setQuery] = useState("");
 
   return (
@@ -8,7 +13,9 @@ const Search = () => {
       className="w-full max-w-xs"
       onSubmit={(e) => {
         e.preventDefault();
-        console.log("Get data");
+        // Comment 1
+        fetchForecasts(query);
+        persistLocation(query);
       }}
     >
       <input

@@ -1,4 +1,9 @@
-import { forecasts } from "../../data/weather";
+import { FC } from "react";
+import { IForecast } from "../../interfaces/weather";
+
+interface Props {
+  forecasts: IForecast[]
+}
 
 const dateOptions: Intl.DateTimeFormatOptions = {
   weekday: "long",
@@ -7,7 +12,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
   day: "numeric",
 };
 
-const Other = () => {
+const Other: FC<Props> = ({ forecasts }) => {
   return (
     <ul className="grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] lg:flex-grow lg:flex-shrink">
       {forecasts.map((forecast, key) => {

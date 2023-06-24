@@ -1,13 +1,14 @@
-import { useEffect, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 import { ClockIcon } from "@heroicons/react/20/solid";
 
-// Comment 1
 const modalHeight = "!h-[calc(100vh-2.75rem)]"
 
-const Histories = () => {
-  // Comment 2
+interface Props {
+  fetchForecasts: (query: string) => Promise<void>;
+}
+
+const Histories: FC<Props> = ({ fetchForecasts }) => {
   const locations: string[] = JSON.parse(localStorage.getItem("locations") || "[]");
-  // Comment 3
   const ulRef = useRef<HTMLDivElement>(null);
 
   const toggleUl = () => {
@@ -63,7 +64,7 @@ const Histories = () => {
                   <button
                     className="text-ellipsis text-left overflow-hidden whitespace-nowrap px-4 py-2 hover:bg-gray-500 transition-colors duration-150 w-full"
                     type="button"
-                    onClick={() => { console.log("Get Data") }}
+                    onClick={() => fetchForecasts(location)}
                   >
                     {location}
                   </button>

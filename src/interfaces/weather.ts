@@ -85,3 +85,9 @@ export interface IToday {
 	name: string;
 	cod: number;
 }
+
+export interface IFetchWeather {
+	loading: boolean;
+	data: { today: IToday; forecasts: IForecast[] } | null;
+	error: null | string;
+}
